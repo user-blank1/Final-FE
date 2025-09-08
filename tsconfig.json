@@ -1,0 +1,17 @@
+{
+    "files": [],
+    "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+    "compilerOptions": {
+        "composite": true,
+        "jsx": "react-jsx",
+        "esModuleInterop": true,
+        "baseUrl": "src",
+        "paths": {
+            "@components/*": ["components/*"],
+            "@reusables/*": ["reusables/*"],
+            "@assets/*": ["assets/*"],
+            "@pages/*": ["pages/*"]
+        }
+    },
+    "include": ["src"]
+}
