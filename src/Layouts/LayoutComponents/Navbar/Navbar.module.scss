@@ -1,17 +1,26 @@
 $breakpoint-lg: 992px;
-
+.navbar * {
+    font-family: "Inter", sans-serif;
+}
 .navbar {
     background-color: black;
 
     .nav-item {
-        color: white;
+        color: rgb(175, 175, 175);
         text-decoration: none;
 
         &:hover {
-            text-decoration: underline;
+            color: white;
         }
         &:active {
             scale: 0.9;
+            color: rgb(255, 255, 255) !important;
+        }
+        &:focus {
+            color: rgb(255, 255, 255) !important;
+        }
+        &.active {
+            color: white !important;
         }
     }
     .navbar-toggler {
@@ -28,12 +37,20 @@ $breakpoint-lg: 992px;
 .sample-text {
     font-size: 0.8rem;
 }
-
+.contact-info {
+    width: fit-content;
+}
 @media (width>=$breakpoint-lg) {
     .contacts {
         position: absolute;
         right: 1.5rem;
         top: 50%;
         transform: translateY(-50%);
+    }
+}
+@media (width < $breakpoint-lg) {
+    .nav-item {
+        display: flex !important;
+        justify-content: center !important;
     }
 }

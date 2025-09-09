@@ -9,7 +9,8 @@ export default {
         "^@/(.*)$": "<rootDir>/src/$1",
         "^@reusables/(.*)$": "<rootDir>/src/reusables/$1",
         "^layout/(.*)$": "<rootDir>/src/layout/$1",
-        "^@pages/(.*)$": "<rootDir>/src/pages/$1",
+        "^@pages/(.*)$": "<rootDir>/src/Pages/$1",
+        "^@assets/(.*)$": "<rootDir>/src/assets/$1",
         "^@components/(.*)$": "<rootDir>/src/components/$1",
     },
     transform: {

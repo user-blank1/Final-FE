@@ -1,0 +1,39 @@
+$breakpoint: 992px;
+
+.imgContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    @media (max-width: $breakpoint) {
+        object-fit: cover;
+        object-position: 0% 10%;
+    }
+}
+.hr {
+    border: none;
+    height: 0.05rem;
+    background-color: #000000; //TODO - why can i still see it
+}
+.button {
+    width: fit-content;
+}
+.title {
+    font-size: 4.5rem;
+    font-weight: 700;
+}
+@media (width<992px) {
+    .img-col {
+        max-height: 50vh;
+    }
+}
+
+@media (width>992px) {
+    .img-col {
+        max-height: 80vh;
+    }
+}
