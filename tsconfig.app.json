@@ -23,7 +23,7 @@
             "@components/*": ["components/*"],
             "@reusables/*": ["reusables/*"],
             "@assets/*": ["assets/*"],
-            "@pages/*": ["pages/*"]
+            "@pages/*": ["Pages/*"]
         }
     },
     "include": ["src", "./jest.setup.ts"]
