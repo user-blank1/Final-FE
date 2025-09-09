@@ -1,0 +1,129 @@
+import styles from "./Footer.module.scss";
+function Footer() {
+    return (
+        <footer className="text-center text-lg-start bg-body-tertiary text-muted">
+            <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <div className="me-5 d-none d-lg-block">
+                    <span>Get connected with us on social networks:</span>
+                </div>
+                <div>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-facebook" viewBox="0 0 16 16">
+                            <path d="M8.94 8.5H10V12H8V8.5H7V7h1V6.25C8 5.01 8.99 4 10.25 4H12v1.5h-1.25c-.41 0-.75.34-.75.75V7h2l-.25 1.5H10V12H8V8.5z" />
+                            <path fillRule="evenodd" d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1z" />
+                        </svg>
+                    </a>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-twitter" viewBox="0 0 16 16">
+                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.009-.422A6.673 6.673 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.084.797A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.381A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115c-.212 0-.417-.021-.616-.061a3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg>
+                    </a>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16">
+                            <path d="M8.16 13.6c2.16 0 3.97-1.44 4.62-3.44H8.16v-2.16h7.84c.07.44.11.88.11 1.44 0 4.16-2.8 7.12-7.11 7.12-4.08 0-7.36-3.36-7.36-7.52s3.28-7.52 7.36-7.52c2.24 0 4.08.8 5.36 2.08l-2.16 2.08c-.64-.64-1.76-1.36-3.2-1.36-2.72 0-4.96 2.24-4.96 5.04s2.24 5.04 4.96 5.04z" />
+                        </svg>
+                    </a>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
+                            <path d="M8 3.162c1.636 0 1.836.006 2.478.036.637.03.98.134 1.21.224.29.11.497.242.717.462.22.22.352.427.462.717.09.23.194.573.224 1.21.03.642.036.842.036 2.478s-.006 1.836-.036 2.478c-.03.637-.134.98-.224 1.21-.11.29-.242.497-.462.717-.22.22-.427.352-.717.462-.23.09-.573.194-1.21.224-.642.03-.842.036-2.478.036s-1.836-.006-2.478-.036c-.637-.03-.98-.134-1.21-.224-.29-.11-.497-.242-.717-.462-.22-.22-.352-.427-.462-.717-.09-.23-.194-.573-.224-1.21C3.168 9.836 3.162 9.636 3.162 8s.006-1.836.036-2.478c.03-.637.134-.98.224-1.21.11-.29.242-.497.462-.717.22-.22.427-.352.717-.462.23-.09.573-.194 1.21-.224C6.164 3.168 6.364 3.162 8 3.162zm0-1.162C6.326 2 6.122 2.006 5.478 2.036c-.646.03-1.09.134-1.462.224-.39.11-.67.242-.97.542-.3.3-.432.58-.542.97-.09.372-.194.816-.224 1.462C2.006 6.122 2 6.326 2 8c0 1.674.006 1.878.036 2.522.03.646.134 1.09.224 1.462.11.39.242.67.542.97.3.3.58.432.97.542.372.09.816.194 1.462.224.654.03.858.036 2.522.036s1.868-.006 2.522-.036c.646-.03 1.09-.134 1.462-.224.39-.11.67-.242.97-.542.3-.3.432-.58.542-.97.09-.372.194-.816.224-1.462.03-.654.036-.858.036-2.522s-.006-1.868-.036-2.522c-.03-.646-.134-1.09-.224-1.462-.11-.39-.242-.67-.542-.97-.3-.3-.58-.432-.97-.542-.372-.09-.816-.194-1.462-.224C9.878 2.006 9.674 2 8 2z" />
+                            <path d="M8 5.838A2.162 2.162 0 1 0 8 10.162a2.162 2.162 0 0 0 0-4.324zm0 3.162a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                            <circle cx="12.5" cy="3.5" r="1" />
+                        </svg>
+                    </a>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-linkedin" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.324 0 .725 0h14.55c.401 0 .725.513.725 1.146v13.708c0 .633-.324 1.146-.725 1.146H.725A.723.723 0 0 1 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c-.837 0-1.358-.554-1.358-1.248 0-.703.532-1.248 1.388-1.248.857 0 1.358.545 1.358 1.248 0 .694-.501 1.248-1.388 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.176-.432.577-.88 1.25-.88.881 0 1.234.664 1.234 1.635v3.866h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.703-2.165 1.198v.025h-.016a5.13 5.13 0 0 1 .016-.025V6.169h-2.4c.03.703 0 7.225 0 7.225h2.4z" />
+                        </svg>
+                    </a>
+                    <a href="" className="me-4 text-reset icon-link icon-link-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.6-.18-3.29-.8-3.29-3.56 0-.79.28-1.44.74-1.95-.07-.18-.32-.91.07-1.9 0 0 .6-.19 1.97.73a6.8 6.8 0 0 1 1.8-.24c.61 0 1.22.08 1.8.24 1.37-.92 1.97-.73 1.97-.73.39.99.14 1.72.07 1.9.46.51.74 1.16.74 1.95 0 2.77-1.69 3.38-3.3 3.56.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </div>
+            </section>
+            <section className="">
+                <div className="container text-center text-md-start mt-5">
+                    <div className="row mt-3">
+                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">
+                                <i className="fas fa-gem me-3"></i>Company name
+                            </h6>
+                            <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                        <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">Products</h6>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Angular
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    React
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Vue
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Laravel
+                                </a>
+                            </p>
+                        </div>
+                        <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Pricing
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Settings
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Orders
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#!" className={`text-reset ${styles["text-decoration-underline-hover"]}`}>
+                                    Help
+                                </a>
+                            </p>
+                        </div>
+                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+                            <p>
+                                <i className="fas fa-home me-3"></i> New York, NY 10012, US
+                            </p>
+                            <p>
+                                <i className="fas fa-envelope me-3"></i>
+                                info@example.com
+                            </p>
+                            <p>
+                                <i className="fas fa-phone me-3"></i> + 01 234 567 88
+                            </p>
+                            <p>
+                                <i className="fas fa-print me-3"></i> + 01 234 567 89
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div className="text-center p-4" style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
+                © 2021 Copyright:
+                <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
+                    MDBootstrap.com
+                </a>
+            </div>
+        </footer>
+    );
+}
+
+export default Footer;
