@@ -1,0 +1,9 @@
+.text-decoration-underline-hover {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+    transition: text-underline-offset 0.2s;
+}
+.text-decoration-underline-hover:hover {
+    text-underline-offset: 0.3em;
+    color: black !important;
+}
