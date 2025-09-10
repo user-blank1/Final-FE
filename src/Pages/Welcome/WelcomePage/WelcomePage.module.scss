@@ -10,7 +10,11 @@ $breakpoint: 992px;
     width: 100%;
     height: 100%;
     position: relative;
+    @media (width > $breakpoint) {
+        height: 90%;
 
+        align-self: flex-end;
+    }
     .overlay {
         bottom: 3rem;
         left: -2rem;
@@ -50,16 +54,18 @@ $breakpoint: 992px;
             scale: 0.95;
         }
     }
-}
-.image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    @media (max-width: $breakpoint) {
+    .image {
+        width: 100%;
+        height: 100%;
+        object-position: 0% 50%;
         object-fit: cover;
-        object-position: 0% 10%;
+        @media (max-width: $breakpoint) {
+            object-fit: cover;
+            object-position: 0% 10%;
+        }
     }
 }
+
 .hr {
     border: none;
     height: 0.05rem;
@@ -67,6 +73,27 @@ $breakpoint: 992px;
 }
 .button {
     width: fit-content;
+}
+
+.customButton {
+    background-color: #ff6b35 !important;
+    border-color: #ff6b35 !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    border-radius: 0.5rem !important;
+}
+
+.customButton:hover {
+    background-color: #e55a2b !important;
+    border-color: #e55a2b !important;
+    transform: translateY(-0.1rem);
+    transition:
+        transform 0.3s ease,
+        background-color 0s,
+        border-color 0s;
+    &:active {
+        background-color: #ca4113 !important;
+    }
 }
 
 .circle-not-available {
@@ -85,6 +112,11 @@ $breakpoint: 992px;
 }
 .img-col > div {
     height: 100%;
+}
+.img-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Aligns content to bottom */
 }
 @media (width<992px) {
     .img-col {

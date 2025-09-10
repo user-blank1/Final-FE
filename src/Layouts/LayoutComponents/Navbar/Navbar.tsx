@@ -47,7 +47,7 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className={`nav-item`}>
-                            <Link className={`nav-link  ${styles["nav-item"]}`} to="/about">
+                            <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/about">
                                 About us
                             </Link>
                         </li>

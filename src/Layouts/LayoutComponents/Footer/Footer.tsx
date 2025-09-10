@@ -65,7 +65,9 @@ function Footer() {
                             </p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Products</h6>
+                            <h6 data-testid="footer-products-heading" className="text-uppercase fw-bold mb-4 text-white text-center">
+                                Products
+                            </h6>
                             <p>
                                 <a
                                     href="#"
@@ -100,7 +102,7 @@ function Footer() {
                             </p>
                         </div>
                         <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Useful links</h6>
+                            <h6 className="text-uppercase fw-bold mb-4 text-white text-center">Useful links</h6>
                             <p>
                                 <Link
                                     to="/"
@@ -112,6 +114,7 @@ function Footer() {
                             <p>
                                 <Link
                                     to="/about"
+                                    data-testid="footer-about-link"
                                     className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
                                 >
                                     About Us
@@ -135,7 +138,7 @@ function Footer() {
                             </p>
                         </div>
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Contact</h6>
+                            <h6 className="text-uppercase fw-bold mb-4 text-white text-center">Contact</h6>
                             {!isMobile && (
                                 <div className={`d-flex flex-column ${styles["contacts"]}`}>
                                     <div className="d-flex align-items-center justify-content-center gap-2">
