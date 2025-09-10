@@ -65,61 +65,88 @@ function Footer() {
                             </p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Products</h6>
+                            <h6 data-testid="footer-products-heading" className="text-uppercase fw-bold mb-4 text-white text-center">
+                                Products
+                            </h6>
                             <p>
-                                <a href="#" className={`d-flex align-items-center  text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <a
+                                    href="#"
+                                    className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Angular
                                 </a>
                             </p>
                             <p>
-                                <a href="#!" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <a
+                                    href="#!"
+                                    className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     React
                                 </a>
                             </p>
                             <p>
-                                <a href="#!" className={` d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <a
+                                    href="#!"
+                                    className={` d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Vue
                                 </a>
                             </p>
                             <p>
-                                <a href="#!" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <a
+                                    href="#!"
+                                    className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Laravel
                                 </a>
                             </p>
                         </div>
                         <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Useful links</h6>
+                            <h6 className="text-uppercase fw-bold mb-4 text-white text-center">Useful links</h6>
                             <p>
-                                <Link to="/" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <Link
+                                    to="/"
+                                    className={` d-flex justify-content-center align-items-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Home
                                 </Link>
                             </p>
                             <p>
-                                <Link to="/about" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <Link
+                                    to="/about"
+                                    data-testid="footer-about-link"
+                                    className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     About Us
                                 </Link>
                             </p>
                             <p>
-                                <Link to="/contact" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <Link
+                                    to="/contact"
+                                    className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Contact Us
                                 </Link>
                             </p>
                             <p>
-                                <a href="#!" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
+                                <a
+                                    href="#!"
+                                    className={`d-flex justify-content-center align-items-center text-white ${styles["text-decoration-underline-hover"]}`}
+                                >
                                     Help
                                 </a>
                             </p>
                         </div>
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            <h6 className="text-uppercase fw-bold mb-4 text-white">Contact</h6>
+                            <h6 className="text-uppercase fw-bold mb-4 text-white text-center">Contact</h6>
                             {!isMobile && (
                                 <div className={`d-flex flex-column ${styles["contacts"]}`}>
-                                    <div className="d-flex align-items-center gap-2">
+                                    <div className="d-flex align-items-center justify-content-center gap-2">
                                         <a href="#" className={`d-flex align-items-center  text-white ${styles["text-decoration-underline-hover"]}`}>
                                             Email@mail.com
                                         </a>
                                     </div>
-                                    <div className="d-flex">
+                                    <div className="d-flex justify-content-center">
                                         <a href="#" className={`d-flex align-items-center text-white ${styles["text-decoration-underline-hover"]}`}>
                                             +1 234 567 890
                                         </a>

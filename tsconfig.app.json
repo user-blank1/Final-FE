@@ -20,7 +20,7 @@
         "noUncheckedSideEffectImports": true,
         "baseUrl": "src",
         "paths": {
-            "@components/*": ["components/*"],
+            "@components/*": ["Components/*"],
             "@reusables/*": ["reusables/*"],
             "@assets/*": ["assets/*"],
             "@pages/*": ["Pages/*"]

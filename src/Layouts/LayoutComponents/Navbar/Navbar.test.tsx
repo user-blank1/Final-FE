@@ -3,6 +3,7 @@ import { fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter, useLocation } from "react-router";
 import Navbar from "./Navbar";
+import { Routes, Route } from "react-router-dom";
 
 function LocationDisplay() {
     const location = useLocation();
@@ -21,12 +22,17 @@ describe("Navbar", () => {
         render(
             <MemoryRouter initialEntries={["/"]}>
                 <Navbar />
+                <Routes>
+                    <Route path="/about" element={<div>Learn About Us</div>} />
+                </Routes>
                 <LocationDisplay />
             </MemoryRouter>
         );
-        expect(screen.getByText("About")).toHaveAttribute("href", "/about");
-        fireEvent.click(screen.getByText("About"));
+        const aboutLink = screen.getByTestId("navbar-about-link");
+        expect(aboutLink).toBeInTheDocument();
+        expect(aboutLink).toHaveAttribute("href", "/about");
+        fireEvent.click(aboutLink);
         expect(screen.getByTestId("location")).toHaveTextContent("/about");
-        expect(screen.getByText("About")).toBeInTheDocument();
+        expect(screen.getByText("Learn About Us")).toBeInTheDocument();
     });
 });
