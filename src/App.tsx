@@ -1,26 +1,41 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout/MainLayout";
-import Welcome from "@pages/Welcome";
+import Signup from "@components/Signup";
+import AuthLayout from "./Layouts/AuthLayout/AuthLayout";
+import Login from "@components/Login";
+import Contact from "@pages/Contact";
+import { HomeIndex } from "@components/RouterConfig/RouterConfig";
+import { RequireAdmin } from "@components/RequireAdmin/RequireAdmin";
+import AdminDashboard from "@pages/AdminDashboard/AdminDashboard";
+import AddProduct from "@pages/AddProduct";
 const pages = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
         children: [
-            { index: true, element: <Welcome /> },
+            { index: true, element: <HomeIndex /> },
             { path: "/about", element: <div>Learn About Us</div> },
-            { path: "/contact", element: <div>Contact Us</div> },
+            { path: "/contact", element: <Contact /> },
+        ],
+    },
+    {
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+            { path: "signup", element: <Signup /> },
+            { path: "login", element: <Login /> },
         ],
     },
 
-    //   {
-    //     path: "/admin",
-    //     element: <AdminLayout />,
-    //     children: [
-    //       { index: true, element: <Home /> },
-    //       { path: "*", element: <Klaida /> },
-    //     ],
-    //   },
+    {
+        path: "/admin",
+        element: <RequireAdmin />,
+        children: [
+            { index: true, element: <AdminDashboard /> },
+            { path: "add-product", element: <AddProduct /> },
+        ],
+    },
 ]);
 function App() {
     return <RouterProvider router={pages} />;

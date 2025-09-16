@@ -1,0 +1,37 @@
+.AddProduct {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+}
+
+.form {
+    box-shadow: 0 0 5px 20px black;
+    @media (max-width: 992px) {
+        width: 80%;
+    }
+}
+.backButton {
+    position: absolute;
+    top: 1rem;
+    left: 3rem;
+
+    svg {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+            fill: rgb(212, 212, 212);
+        }
+        &:active {
+            fill: rgb(172, 172, 172);
+        }
+    }
+}

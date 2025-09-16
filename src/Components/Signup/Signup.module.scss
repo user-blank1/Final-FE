@@ -1,0 +1,11 @@
+.form-wrap {
+    background-color: rgb(57, 58, 88);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    @media (width>992px) {
+        width: 35rem;
+    }
+    @media (max-width: 991px) {
+        width: 100%;
+    }
+}

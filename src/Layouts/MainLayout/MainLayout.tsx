@@ -7,6 +7,7 @@ function MainLayout() {
         <div className={styles.mainLayout}>
             <Navbar />
             <div className={`${styles.content}`}>
+                <hr className="border border-2 m-0 p-0" />
                 <Outlet />
             </div>
             <Footer />

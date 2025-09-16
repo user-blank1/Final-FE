@@ -2,6 +2,8 @@ import styles from "./Navbar.module.scss";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import Button from "../../../Components/Button";
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useLogout } from "../../../hooks/useLogout";
 function Navbar() {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
     useEffect(() => {
@@ -11,6 +13,11 @@ function Navbar() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+    const { logout } = useLogout();
+
+    const { user, token } = useAuthContext();
+
+    console.log("Navbar user:", user);
     return (
         <nav className={`navbar px-4 navbar-expand-lg position-relative ${styles.navbar}`}>
             <div className="container-fluid">
@@ -41,16 +48,35 @@ function Navbar() {
                                 Contact
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className={`nav-link  ${styles["nav-item"]}`} to="/contact">
-                                Services
-                            </Link>
-                        </li>
-                        <li className={`nav-item`}>
-                            <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/about">
-                                About us
-                            </Link>
-                        </li>
+                        {!user && (
+                            <li className={`nav-item`}>
+                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/auth/login">
+                                    Login
+                                </Link>
+                            </li>
+                        )}
+                        {!user && (
+                            <li className={`nav-item`}>
+                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/auth/signup">
+                                    Sign Up
+                                </Link>
+                            </li>
+                        )}
+                        {user && (
+                            <li className={`nav-item`}>
+                                <div data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} onClick={logout}>
+                                    Log Out
+                                </div>
+                            </li>
+                        )}
+
+                        {user && user.role === "admin" && (
+                            <li className={`nav-item`}>
+                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/admin">
+                                    Admin Panel
+                                </Link>
+                            </li>
+                        )}
                         {isMobile && <Button text="Get Started" isBordered={false} />}
                     </ul>
                     {isMobile && (
