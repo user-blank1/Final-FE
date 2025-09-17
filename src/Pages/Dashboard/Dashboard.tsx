@@ -6,6 +6,7 @@ import img4 from "@assets/tools2.png";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useState, useEffect } from "react";
 import ToolCard from "@components/ToolCard";
+import AllProducts from "@components/AllProducts";
 interface Product {
     _id: string;
     name: string;
@@ -55,7 +56,7 @@ function Dashboard() {
             <h1 className="text-white mt-4 mb-0 p-0 ">Welcome to Best Rent!</h1>
             <div className={`container-fluid ${styles["dashboard-container"]}`}>
                 <div id="carouselExample" className={`carousel slide d-flex justify-content-center align-items-center  ${styles.carousel}`}>
-                    <div className="carousel-inner h-75 w-75  ">
+                    <div className="carousel-inner h-75 w-75">
                         <div className="carousel-item active  h-100">
                             <img src={img1} className="d-block w-100 h-100 object-fit-contain" alt="..." />
                         </div>
@@ -97,6 +98,10 @@ function Dashboard() {
                             );
                         })}
                 </div>
+            </div>
+            <hr className="border border-white w-100" />
+            <div className={`${styles["all-products-container"]}`}>
+                <AllProducts />
             </div>
         </div>
     );

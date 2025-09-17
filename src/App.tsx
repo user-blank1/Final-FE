@@ -10,6 +10,7 @@ import { RequireAdmin } from "@components/RequireAdmin/RequireAdmin";
 import AdminDashboard from "@pages/AdminDashboard/AdminDashboard";
 import AddProduct from "@pages/AddProduct";
 import ProductPage from "@pages/ProductPage";
+import { RequireAuth } from "@components/RequireAuth/RequireAuth";
 const pages = createBrowserRouter([
     {
         path: "/",
@@ -19,6 +20,16 @@ const pages = createBrowserRouter([
             { path: "/about", element: <div>Learn About Us</div> },
             { path: "/contact", element: <Contact /> },
             { path: "/products/:title", element: <ProductPage /> },
+        ],
+    },
+    {
+        path: "/products",
+        element: <RequireAuth />,
+        children: [
+            {
+                element: <MainLayout />,
+                children: [{ path: ":title", element: <ProductPage /> }],
+            },
         ],
     },
     {
