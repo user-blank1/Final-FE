@@ -2,7 +2,7 @@ import { createContext, useReducer, useEffect } from "react";
 import type { ReactNode } from "react";
 
 interface User {
-    id: string;
+    _id: string;
     username: string;
     email: string;
     role: string;
