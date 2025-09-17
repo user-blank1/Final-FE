@@ -9,7 +9,7 @@
         border: none;
     }
     &:hover {
-        background-color: rgb(240, 240, 240);
+        filter: brightness(90%);
         cursor: pointer;
     }
     &:active {

@@ -6,8 +6,17 @@ import img4 from "@assets/tools2.png";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useState, useEffect } from "react";
 import ToolCard from "@components/ToolCard";
+interface Product {
+    _id: string;
+    name: string;
+    description: string;
+    imageUrl: string;
+    price: number;
+}
 function Dashboard() {
-    const { token } = useAuthContext();
+    const { token, isLoading } = useAuthContext();
+    const [error, setError] = useState("");
+    const [popular, setPopular] = useState<Product[] | null>(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
     useEffect(() => {
         function handleResize() {
@@ -19,16 +28,28 @@ function Dashboard() {
         };
     }, [window.innerWidth]);
     useEffect(() => {
+        if (isLoading || !token) return;
+        setError("");
         const getPopularProducts = async () => {
-            await fetch("/api/products/popular", {
+            const res = await fetch("/api/products/popular", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            const data = await res.json();
+            console.log(data);
+            if (!res.ok) {
+                setError("Error fetchintg most popular products");
+            }
+            if (res.ok) {
+                setError("");
+
+                setPopular(data.products);
+            }
         };
         getPopularProducts();
-    }, []);
+    }, [token, isLoading]);
     return (
         <div className={`${styles.dashboard} d-flex flex-column align-items-center  `}>
             <h1 className="text-white mt-4 mb-0 p-0 ">Welcome to Best Rent!</h1>
@@ -61,10 +82,20 @@ function Dashboard() {
             <hr className="border border-white w-100" />
             <div className=" w-100 pb-5">
                 <h1 className="text-center text-white mb-4">3 most popular Tools</h1>
+                <div>{error}</div>
                 <div className={`d-flex justify-content-center align-items-center gap-4 flex-wrap  flex-column flex-lg-row`}>
-                    <ToolCard title="Card 1" text="This is card 1" imgSrc={img1} />
-                    <ToolCard title="Card 2" text="This is card 2" imgSrc={img2} />
-                    <ToolCard title="Card 3" text="This is card 3" imgSrc={img4} />
+                    {popular &&
+                        popular.map((card) => {
+                            return (
+                                <ToolCard
+                                    key={card._id}
+                                    title={card.name}
+                                    text={card.description}
+                                    price={card.price}
+                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads\\", "")}`}
+                                />
+                            );
+                        })}
                 </div>
             </div>
         </div>

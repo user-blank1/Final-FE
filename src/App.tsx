@@ -9,6 +9,7 @@ import { HomeIndex } from "@components/RouterConfig/RouterConfig";
 import { RequireAdmin } from "@components/RequireAdmin/RequireAdmin";
 import AdminDashboard from "@pages/AdminDashboard/AdminDashboard";
 import AddProduct from "@pages/AddProduct";
+import ProductPage from "@pages/ProductPage";
 const pages = createBrowserRouter([
     {
         path: "/",
@@ -17,6 +18,7 @@ const pages = createBrowserRouter([
             { index: true, element: <HomeIndex /> },
             { path: "/about", element: <div>Learn About Us</div> },
             { path: "/contact", element: <Contact /> },
+            { path: "/products/:title", element: <ProductPage /> },
         ],
     },
     {
