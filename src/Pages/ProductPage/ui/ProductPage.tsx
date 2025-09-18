@@ -75,7 +75,7 @@ function ProductPage() {
                         title={product.name}
                         text={product.description}
                         price={product.price}
-                        imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads\\", "")}`}
+                        imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads/", "")}`}
                         showBtn={false}
                         showPrice={true}
                     />

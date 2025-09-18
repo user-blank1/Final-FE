@@ -9,10 +9,12 @@ import ToolCard from "@components/ToolCard";
 import AllProducts from "@components/AllProducts";
 interface Product {
     _id: string;
+    available: boolean;
     name: string;
     description: string;
     imageUrl: string;
     price: number;
+    popularity: number;
 }
 function Dashboard() {
     const { token, isLoading } = useAuthContext();
@@ -39,7 +41,7 @@ function Dashboard() {
                 },
             });
             const data = await res.json();
-            console.log(data);
+            console.log(data.products);
             if (!res.ok) {
                 setError("Error fetchintg most popular products");
             }
@@ -84,7 +86,7 @@ function Dashboard() {
             <div className=" w-100 pb-5">
                 <h1 className="text-center text-white mb-4">3 most popular Tools</h1>
                 <div>{error}</div>
-                <div className={`d-flex justify-content-center align-items-center gap-4 flex-wrap  flex-column flex-lg-row`}>
+                <div className={`d-flex flex-column flex-lg-row justify-content-center align-items-center gap-4 `}>
                     {popular &&
                         popular.map((card) => {
                             return (
@@ -93,14 +95,16 @@ function Dashboard() {
                                     title={card.name}
                                     text={card.description}
                                     price={card.price}
-                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads\\", "")}`}
+                                    available={card.available}
+                                    popularity={card.popularity}
+                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
                                 />
                             );
                         })}
                 </div>
             </div>
             <hr className="border border-white w-100" />
-            <div className={`${styles["all-products-container"]}`}>
+            <div className={`${styles["all-products-container"]}  w-100 mb-5`}>
                 <AllProducts />
             </div>
         </div>
