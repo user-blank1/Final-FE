@@ -11,6 +11,7 @@ import AdminDashboard from "@pages/AdminDashboard/AdminDashboard";
 import AddProduct from "@pages/AddProduct";
 import ProductPage from "@pages/ProductPage";
 import { RequireAuth } from "@components/RequireAuth/RequireAuth";
+import UserPage from "@pages/UserPage";
 const pages = createBrowserRouter([
     {
         path: "/",
@@ -28,7 +29,13 @@ const pages = createBrowserRouter([
         children: [
             {
                 element: <MainLayout />,
-                children: [{ path: ":title", element: <ProductPage /> }],
+                children: [
+                    { path: ":title", element: <ProductPage /> },
+                    {
+                        path: "user",
+                        element: <UserPage />,
+                    },
+                ],
             },
         ],
     },

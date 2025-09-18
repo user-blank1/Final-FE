@@ -9,7 +9,7 @@
         height: 68vh !important;
     }
     @media (max-width: 576px) {
-        width: 80%;
+        width: 90%;
         height: 68vh !important;
     }
 }
@@ -33,4 +33,11 @@
 }
 .text-container {
     height: 35%;
+}
+
+.title {
+    height: 12%;
+}
+.text {
+    height: 32%;
 }
