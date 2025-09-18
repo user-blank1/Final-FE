@@ -37,14 +37,14 @@ function ToolCard({
     const location = useLocation();
     if (location.pathname === "/") text = truncateText();
     return (
-        <div className={` border border-5 rounded-4 overflow-hidden ${styles.card}`}>
+        <div className={` border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
             <div className={`  w-100 ${styles["image-container"]}`}>
                 <img src={imgSrc} className="h-100 w-100 " alt={title} />
             </div>
             <div className={`d-flex flex-column align-items-center h-25 pt-2 ${styles["text-container"]}`}>
                 <h5 className="card-title text-white">{title}</h5>
                 <p className="card-text text-white w-75 mt-3 text-center text-break">{text}</p>
-                <div className="d-flex w-100 justify-content-around align-items-center border py-1">
+                <div className={`d-flex w-100 justify-content-around align-items-center ${location.pathname === "/" ? "border" : ""} py-1`}>
                     {showBtn && (
                         <Button text="rent now" textColor="black" backgroundColor="orange" isBordered={false} onClick={handleClick} disabled={!available} />
                     )}

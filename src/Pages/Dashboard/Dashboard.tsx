@@ -41,7 +41,7 @@ function Dashboard() {
                 },
             });
             const data = await res.json();
-
+            console.log(data.products);
             if (!res.ok) {
                 setError("Error fetchintg most popular products");
             }
@@ -86,7 +86,7 @@ function Dashboard() {
             <div className=" w-100 pb-5">
                 <h1 className="text-center text-white mb-4">3 most popular Tools</h1>
                 <div>{error}</div>
-                <div className={`d-flex justify-content-center align-items-center gap-4 `}>
+                <div className={`d-flex flex-column flex-lg-row justify-content-center align-items-center gap-4 `}>
                     {popular &&
                         popular.map((card) => {
                             return (
@@ -97,7 +97,7 @@ function Dashboard() {
                                     price={card.price}
                                     available={card.available}
                                     popularity={card.popularity}
-                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads\\", "")}`}
+                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
                                 />
                             );
                         })}

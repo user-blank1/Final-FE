@@ -17,13 +17,14 @@ function AddProduct() {
         const productPrice = form.productPrice.value;
         const productImage = form.productImage.files[0];
         const available = form.available.checked;
-
+        const popularity = form.popularity.value;
         const formData = new FormData();
         formData.append("productName", productName);
         formData.append("productDescription", productDescription);
         formData.append("productPrice", productPrice);
         formData.append("productImage", productImage);
         formData.append("available", available.toString());
+        formData.append("popularity", popularity);
 
         const res = await fetch("/api/products", {
             method: "POST",
@@ -82,6 +83,12 @@ function AddProduct() {
                         Product Image
                     </label>
                     <input type="file" id="productImage" name="productImage" accept="image/*" required className="text-white border rounded-2" />
+                </div>
+                <div className="d-flex flex-row gap-2 mb-4">
+                    <label htmlFor="popularity" className="text-white">
+                        Popularity
+                    </label>
+                    <input min="0" type="number" id="popularity" name="popularity" className=" border rounded-2" />
                 </div>
                 <div className="d-flex flex-row gap-2 mb-4">
                     <label htmlFor="available" className="text-white">

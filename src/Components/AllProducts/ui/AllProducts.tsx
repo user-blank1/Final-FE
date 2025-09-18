@@ -18,7 +18,6 @@ function AllProducts() {
                 },
             });
             const json = await res.json();
-            console.log(json.products);
             if (!res.ok) {
                 setError(json.error);
             }
@@ -39,9 +38,10 @@ function AllProducts() {
                         key={product._id}
                         title={product.name}
                         text={product.description}
-                        imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads\\", "")}`}
+                        imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads/", "")}`}
                         price={product.price}
                         available={product.available}
+                        isWide={true}
                     />
                 ))}
             </div>
