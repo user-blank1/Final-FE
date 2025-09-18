@@ -68,8 +68,14 @@ function Navbar() {
                                     Log Out
                                 </div>
                             </li>
+                        )}{" "}
+                        {user && (
+                            <li className={`nav-item`}>
+                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/products/user">
+                                    My Profile
+                                </Link>
+                            </li>
                         )}
-
                         {user && user.role === "admin" && (
                             <li className={`nav-item`}>
                                 <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/admin">
