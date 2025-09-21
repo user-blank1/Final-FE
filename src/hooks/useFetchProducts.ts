@@ -23,7 +23,7 @@ export const useFetchProducts = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-
+            console.log("Fetching user products!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             const json = await res.json();
 
             if (!res.ok) {

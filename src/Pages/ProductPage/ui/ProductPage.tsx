@@ -19,6 +19,7 @@ function ProductPage() {
     const [product, setProduct] = useState<Product | null>(null);
     const { token, isLoading, user } = useAuthContext();
     const [days, setDays] = useState(0);
+    const [minutes, setMinutes] = useState(0);
     const [error, setError] = useState<string | null>(null);
     const [show, setShow] = useState(false);
     useEffect(() => {
@@ -53,6 +54,7 @@ function ProductPage() {
             body: JSON.stringify({
                 productTitle: product?.name,
                 days,
+                minutes,
                 userId: user?._id,
             }),
         });
@@ -95,11 +97,20 @@ function ProductPage() {
                         <div className=" d-flex flex-column gap-3 align-items-center justify-content-center p-4 bg-white rounded">
                             <label className="fs-5 fw-bold">Enter number of days to rent:</label>
                             <input
-                                min="1"
+                                min="0"
+                                required
                                 type="number"
                                 placeholder="Number of days"
                                 className="p-2 rounded border w-100"
                                 onChange={(e) => setDays(Number(e.target.value))}
+                            />
+                            <label className="fs-5 fw-bold">Enter number of minutes to rent:</label>
+                            <input
+                                min="1"
+                                type="number"
+                                placeholder="Number of minutes"
+                                className="p-2 rounded border w-100"
+                                onChange={(e) => setMinutes(Number(e.target.value))}
                             />
                             <Button text="Confirm" textColor="white" backgroundColor="blue" isBordered={false} onClick={() => rentFunction()} />
                         </div>
