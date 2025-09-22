@@ -41,7 +41,6 @@ function Dashboard() {
                 },
             });
             const data = await res.json();
-            console.log(data.products);
             if (!res.ok) {
                 setError("Error fetchintg most popular products");
             }

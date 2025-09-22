@@ -41,7 +41,7 @@ function EditUser() {
         setFetchError(null);
     }, [userData]);
 
-    const deleteRentedProduct = async (id: string) => {
+    const deleteRentedProduct = async (id?: string) => {
         const res = await fetch(`/api/products/${id}`, {
             method: "DELETE",
             headers: {

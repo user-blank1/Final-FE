@@ -1,6 +1,6 @@
 import styles from "./ToolCard.module.scss";
 import { useNavigate } from "react-router";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import Button from "@components/Button";
 import { useLocation } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -21,6 +21,8 @@ function ToolCard({
     productId,
     adminActions = false,
     adminDelete = false,
+    draft = false,
+    isRented = false,
 }: {
     title: string;
     text: string;
@@ -37,6 +39,8 @@ function ToolCard({
     onDelete?: (productId?: string) => void;
     productId?: string;
     adminDelete?: boolean;
+    draft?: boolean;
+    isRented?: boolean;
 }) {
     const h5Ref = useRef<HTMLHeadingElement>(null);
     const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -53,8 +57,10 @@ function ToolCard({
         }
         return text;
     };
+    useEffect(() => {
+        truncateText();
+    }, [text]);
     const location = useLocation();
-    if (location.pathname === "/") text = truncateText();
 
     /////////////////////////////////////////////////////////////////
     const { token, isLoading } = useAuthContext()!;
@@ -218,10 +224,57 @@ function ToolCard({
             setIsEditing(false);
         }
     }, [isEditingTitle, isEditingDescription, isEditingPrice]);
+
+    const draftFn = async () => {
+        if (!token) return;
+        if (isLoading) return;
+        const res = await fetch(`/api/products/edit/draft/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            alert(json.message || "Failed to update draft status");
+        }
+        if (res.ok) {
+            alert("Draft status updated successfully");
+            window.location.reload();
+        }
+    };
+    if (isRented) {
+        return (
+            <div className={`border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
+                <div className={`w-100 ${styles["image-container"]}`}>
+                    <img src={imgSrc} className="h-100 w-100" alt={title} />
+                </div>
+                <div className={`d-flex flex-column align-items-center pt-2 ${styles["text-container"]}`}>
+                    <h5 className={`text-white ${styles.title}`}>{title}</h5>
+                    <p className="text-info my-2">Currently Rented- cannot edit</p>
+                </div>
+            </div>
+        );
+    }
     return (
         <>
             {isEditing && <div className={`overlay position-fixed top-0 start-0 w-100 h-100 ${styles.overlay}`}></div>}
-            <div className={` border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
+            <div
+                className={`${draft ? `${styles.draftCard}` : ""} border border-5 rounded-4 position-relative overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}
+            >
+                {adminActions && draft && (
+                    <div onClick={() => draftFn()} className={`position-absolute text-white border border-2 rounded-2 p-1 ${styles.draft}`}>
+                        {" "}
+                        Unset as draft
+                    </div>
+                )}
+                {adminActions && !draft && (
+                    <div onClick={() => draftFn()} className={`position-absolute text-white border border-2 rounded-2 p-1 ${styles.draft}`}>
+                        {" "}
+                        Set as draft
+                    </div>
+                )}
                 <div className={`  w-100 ${styles["image-container"]}`}>
                     <img src={imgSrc} className="h-100 w-100 " alt={title} />
                 </div>
@@ -260,7 +313,7 @@ function ToolCard({
                     <hr className="bg-white border w-100 m-0 p-0"></hr>
 
                     <div ref={descriptionRef} className={`card-text text-white w-75 mt-3 text-center text-break ${styles.text} position-relative`}>
-                        {text}
+                        {truncateText()}
                         {(adminActions || adminDelete) && (
                             <span
                                 onClick={editDescription}
