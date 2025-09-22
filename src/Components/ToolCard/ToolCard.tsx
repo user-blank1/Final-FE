@@ -1,7 +1,10 @@
 import styles from "./ToolCard.module.scss";
 import { useNavigate } from "react-router";
+import { useState, useEffect, useRef } from "react";
 import Button from "@components/Button";
 import { useLocation } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 function ToolCard({
     title,
     text,
@@ -16,6 +19,8 @@ function ToolCard({
     showDeleteBtn = false,
     onDelete,
     productId,
+    adminActions = false,
+    adminDelete = false,
 }: {
     title: string;
     text: string;
@@ -28,9 +33,16 @@ function ToolCard({
     isWide?: boolean;
     returnDate?: string;
     showDeleteBtn?: boolean;
-    onDelete?: (productId: string) => void;
+    adminActions?: boolean;
+    onDelete?: (productId?: string) => void;
     productId?: string;
+    adminDelete?: boolean;
 }) {
+    const h5Ref = useRef<HTMLHeadingElement>(null);
+    const descriptionRef = useRef<HTMLParagraphElement>(null);
+    const priceRef = useRef<HTMLParagraphElement>(null);
+    const [isEditing, setIsEditing] = useState(false);
+
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(`/products/${title}`);
@@ -43,40 +55,321 @@ function ToolCard({
     };
     const location = useLocation();
     if (location.pathname === "/") text = truncateText();
+
+    /////////////////////////////////////////////////////////////////
+    const { token, isLoading } = useAuthContext()!;
+
+    const [editedTitle, setEditedTitle] = useState(title);
+    const [isEditingTitle, setIsEditingTitle] = useState(false);
+
+    const [editedDescription, setEditedDescription] = useState(text);
+    const [isEditingDescription, setIsEditingDescription] = useState(false);
+
+    const [editedPrice, setEditedPrice] = useState(price.toString());
+    const [isEditingPrice, setIsEditingPrice] = useState(false);
+
+    const editTitle = async () => {
+        setIsEditingTitle(!isEditingTitle);
+    };
+    const cancelEditTitle = () => {
+        setIsEditingTitle(false);
+        setEditedTitle(title);
+    };
+    const handleTitleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            saveTitle();
+        } else if (e.key === "Escape") {
+            cancelEditTitle();
+        }
+    };
+    const saveTitle = async () => {
+        if (editedTitle.trim() === "") return;
+        if (!token) return;
+        if (isLoading) return;
+        const res = await fetch(`/api/products/edit/title/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ newTitle: editedTitle }),
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            alert(json.message || "Failed to update title");
+            setEditedTitle(title);
+        }
+        if (res.ok) {
+            alert("Title updated successfully");
+            setIsEditingTitle(false);
+        }
+        window.location.reload();
+        return;
+    };
+
+    const editDescription = () => {
+        setIsEditingDescription(!isEditingDescription);
+    };
+    const cancelEditDescription = () => {
+        setIsEditingDescription(false);
+        setEditedDescription(text);
+    };
+    const handleDescriptionKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            saveDescription();
+        } else if (e.key === "Escape") {
+            cancelEditDescription();
+        }
+    };
+    const saveDescription = async () => {
+        if (editedDescription.trim() === "") return;
+        if (!token) return;
+        if (isLoading) return;
+        const res = await fetch(`/api/products/edit/description/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ newDescription: editedDescription }),
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            alert(json.message || "Failed to update description");
+            setEditedDescription(text);
+        }
+        if (res.ok) {
+            alert("Description updated successfully");
+            setIsEditingDescription(false);
+        }
+        window.location.reload();
+        return;
+    };
+
+    const editPrice = () => {
+        setIsEditingPrice(!isEditingPrice);
+    };
+    const cancelEditPrice = () => {
+        setIsEditingPrice(false);
+        setEditedPrice(price.toString());
+    };
+    const handlePriceKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            savePrice();
+        } else if (e.key === "Escape") {
+            cancelEditPrice();
+        }
+    };
+    const savePrice = async () => {
+        const numericPrice = parseFloat(editedPrice);
+        if (isNaN(numericPrice) || numericPrice <= 0) {
+            alert("Please enter a valid price");
+            return;
+        }
+        if (!token) return;
+        if (isLoading) return;
+        const res = await fetch(`/api/products/edit/price/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ newPrice: numericPrice }),
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            alert(json.message || "Failed to update price");
+            setEditedPrice(price.toString());
+        }
+        if (res.ok) {
+            alert("Price updated successfully");
+            setIsEditingPrice(false);
+        }
+        window.location.reload();
+        return;
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isEditingTitle && h5Ref.current && !h5Ref.current.contains(event.target as Node)) {
+                cancelEditTitle();
+            }
+            if (isEditingDescription && descriptionRef.current && !descriptionRef.current.contains(event.target as Node)) {
+                cancelEditDescription();
+            }
+            if (isEditingPrice && priceRef.current && !priceRef.current.contains(event.target as Node)) {
+                cancelEditPrice();
+            }
+        };
+
+        if (isEditingTitle || isEditingDescription || isEditingPrice) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isEditingTitle, isEditingDescription, isEditingPrice]);
+    useEffect(() => {
+        if (isEditingTitle === true || isEditingDescription === true || isEditingPrice === true) {
+            setIsEditing(true);
+        } else {
+            setIsEditing(false);
+        }
+    }, [isEditingTitle, isEditingDescription, isEditingPrice]);
     return (
-        <div className={` border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
-            <div className={`  w-100 ${styles["image-container"]}`}>
-                <img src={imgSrc} className="h-100 w-100 " alt={title} />
-            </div>
-            <div className={`d-flex flex-column align-items-center  pt-2 ${styles["text-container"]}`}>
-                <h5 className={`text-white ${styles.title} `}>{title}</h5>
-                <p className={`card-text text-white w-75 mt-3 text-center text-break ${styles.text}`}>{text}</p>
-                {!location.pathname.includes("/products/user") && (
-                    <div className={`d-flex w-100 justify-content-around align-items-center ${location.pathname === "/" ? "border" : ""} py-1`}>
-                        {showBtn && (
-                            <Button text="rent now" textColor="black" backgroundColor="orange" isBordered={false} onClick={handleClick} disabled={!available} />
+        <>
+            {isEditing && <div className={`overlay position-fixed top-0 start-0 w-100 h-100 ${styles.overlay}`}></div>}
+            <div className={` border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
+                <div className={`  w-100 ${styles["image-container"]}`}>
+                    <img src={imgSrc} className="h-100 w-100 " alt={title} />
+                </div>
+                <div className={`d-flex flex-column align-items-center  pt-2 ${styles["text-container"]}`}>
+                    <h5 ref={h5Ref} className={`text-white ${styles.title}  position-relative `}>
+                        {title}
+                        {(adminActions || adminDelete) && (
+                            <span
+                                onClick={editTitle}
+                                className={`position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ${styles.admin}`}
+                            >
+                                Edit
+                            </span>
                         )}
-                        {popularity !== undefined && <p className="card-text m-0 p-0 text-white">Popularity: {popularity}</p>}
+                        {isEditingTitle ? (
+                            <div className={`d-flex flex-column gap-2 ${styles.editingCard}`}>
+                                <input
+                                    type="text"
+                                    value={editedTitle}
+                                    onChange={(e) => setEditedTitle(e.target.value)}
+                                    onKeyDown={handleTitleKeyPress}
+                                    className="form-control"
+                                    autoFocus
+                                />
+                                <div className="d-flex gap-2">
+                                    <button onClick={saveTitle} className="btn btn-success btn-sm">
+                                        Save
+                                    </button>
+                                    <button onClick={cancelEditTitle} className="btn btn-secondary btn-sm">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        ) : null}
+                    </h5>
+                    <hr className="bg-white border w-100 m-0 p-0"></hr>
+
+                    <div ref={descriptionRef} className={`card-text text-white w-75 mt-3 text-center text-break ${styles.text} position-relative`}>
+                        {text}
+                        {(adminActions || adminDelete) && (
+                            <span
+                                onClick={editDescription}
+                                className={`position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning ${styles.admin}`}
+                                style={{ cursor: "pointer" }}
+                            >
+                                Edit
+                            </span>
+                        )}
+                        {isEditingDescription ? (
+                            <div className={`d-flex flex-column gap-2 mt-2 ${styles.editingCard}`}>
+                                <textarea
+                                    value={editedDescription}
+                                    onChange={(e) => setEditedDescription(e.target.value)}
+                                    onKeyDown={handleDescriptionKeyPress}
+                                    className="form-control"
+                                    rows={3}
+                                    autoFocus
+                                />
+                                <div className="d-flex gap-2">
+                                    <button onClick={saveDescription} className="btn btn-success btn-sm">
+                                        Save
+                                    </button>
+                                    <button onClick={cancelEditDescription} className="btn btn-secondary btn-sm">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        ) : null}
                     </div>
-                )}
-                {showPrice && <p className="card-text text-white">Price: {price}$/Day</p>}
-                {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-2">Currently Unavailable</p>}
-                {returnDate && location.pathname.includes("/products/user") && (
-                    <div>
-                        <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
-                        <p className="text-white">
-                            You have {Math.floor((new Date(returnDate).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24)} days left
-                        </p>
-                    </div>
-                )}
-                {showDeleteBtn && returnDate && (
-                    <div className="d-flex justify-content-center gap-3 flex-column align-items-center my-2">
-                        <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
-                        <Button text="Delete" textColor="white" backgroundColor="red" isBordered={false} onClick={() => onDelete?.(productId!)} />
-                    </div>
-                )}
+                    <hr className="bg-white border w-100 m-0 p-0"></hr>
+                    {!location.pathname.includes("/products/user") && (
+                        <div className={`d-flex w-100 justify-content-around align-items-center ${location.pathname === "/" ? "border" : ""} py-1`}>
+                            {showBtn && (
+                                <Button
+                                    text="rent now"
+                                    textColor="black"
+                                    backgroundColor="orange"
+                                    isBordered={false}
+                                    onClick={handleClick}
+                                    disabled={!available}
+                                />
+                            )}
+                            {popularity !== undefined && <p className="card-text m-0 p-0 text-white">Popularity: {popularity}</p>}
+                        </div>
+                    )}
+
+                    {showPrice && (
+                        <div ref={priceRef} className="card-text text-white position-relative">
+                            Price: {price}$/Day
+                            {(adminActions || adminDelete) && (
+                                <span
+                                    onClick={editPrice}
+                                    className={`position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info ${styles.admin}`}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    Edit
+                                </span>
+                            )}
+                            {isEditingPrice ? (
+                                <div
+                                    className={`d-flex flex-column gap-2 mt-2 position-absolute bg-dark p-2 rounded top-0 start-100 translate-middle ${styles.editingCard}`}
+                                >
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        min="0"
+                                        value={editedPrice}
+                                        onChange={(e) => setEditedPrice(e.target.value)}
+                                        onKeyDown={handlePriceKeyPress}
+                                        className="form-control"
+                                        autoFocus
+                                    />
+                                    <div className="d-flex gap-2">
+                                        <button onClick={savePrice} className="btn btn-success btn-sm">
+                                            Save
+                                        </button>
+                                        <button onClick={cancelEditPrice} className="btn btn-secondary btn-sm">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : null}
+                        </div>
+                    )}
+
+                    {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-2">Currently Unavailable</p>}
+                    {returnDate && location.pathname.includes("/products/user") && (
+                        <div>
+                            <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
+                            <p className="text-white">
+                                You have {Math.floor((new Date(returnDate).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24)} days left
+                            </p>
+                        </div>
+                    )}
+                    {showDeleteBtn && returnDate && (
+                        <div className="d-flex justify-content-center gap-3 flex-column align-items-center my-2">
+                            <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
+                            <Button text="Delete" textColor="white" backgroundColor="red" isBordered={false} onClick={() => onDelete?.(productId!)} />
+                        </div>
+                    )}
+                    {adminDelete && (
+                        <div className="d-flex justify-content-center gap-3 flex-column align-items-center my-2">
+                            <Button text="Delete" textColor="white" backgroundColor="red" isBordered={false} onClick={() => onDelete?.()} />
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
