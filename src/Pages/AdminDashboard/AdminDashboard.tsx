@@ -13,6 +13,8 @@ function AdminDashboard() {
             navigate("/admin/add-product");
         } else if (action === "ManageUsers") {
             navigate("/admin/manage-users");
+        } else if (action === "Edit Products") {
+            navigate("/admin/edit-products");
         }
     };
     return (
@@ -40,6 +42,7 @@ function AdminDashboard() {
                     <select name="adminActions" className="form-select w-100 mb-3" aria-label="Admin actions">
                         <option defaultValue={"AddProducts"}> Add Products</option>
                         <option value="ManageUsers"> Manage Users</option>
+                        <option value="Edit Products">Edit products</option>
                     </select>
                     <button className="btn btn-primary">Go</button>
                 </form>

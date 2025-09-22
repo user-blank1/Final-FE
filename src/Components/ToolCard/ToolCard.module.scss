@@ -41,3 +41,22 @@
 .text {
     height: 32%;
 }
+
+.admin {
+    &:hover {
+        scale: 1.15;
+        cursor: pointer;
+    }
+    &:active {
+        scale: 0.9;
+    }
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    pointer-events: "none";
+}
+.editingCard {
+    position: relative;
+    z-index: 999 !important;
+}
