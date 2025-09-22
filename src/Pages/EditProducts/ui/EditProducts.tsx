@@ -10,7 +10,7 @@ function EditProducts() {
         if (isLoading) return;
         if (!token) return;
         const getAll = async () => {
-            const res = await fetch("/api/products/all", {
+            const res = await fetch("/api/products/all/admin", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -67,6 +67,9 @@ function EditProducts() {
                                 adminDelete={true}
                                 onDelete={() => deleteRentedProduct(product._id)}
                                 productId={product._id}
+                                adminActions={true}
+                                draft={product.draft}
+                                isRented={product.rentedBy}
                                 imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads/", "")}`}
                             />
                         );

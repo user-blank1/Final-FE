@@ -3,7 +3,7 @@
     height: 70vh !important;
     background-color: rgb(88, 70, 45);
     @media (max-width: 1200px) {
-        width: 50%;
+        width: 80%;
         margin: 0 auto;
         margin-bottom: 2rem;
         height: 68vh !important;
@@ -18,7 +18,7 @@
     height: 70vh !important;
     background-color: rgb(88, 70, 45);
     @media (max-width: 1200px) {
-        width: 50%;
+        width: 80%;
         margin: 0 auto;
         margin-bottom: 2rem;
         height: 68vh !important;
@@ -27,7 +27,11 @@
         width: 95%;
         height: 68vh !important;
     }
+    &.draftCard {
+        background-color: rgb(68, 68, 68) !important;
+    }
 }
+
 .image-container {
     height: 65%;
 }
@@ -59,4 +63,16 @@
 .editingCard {
     position: relative;
     z-index: 999 !important;
+}
+.draft {
+    bottom: 1rem;
+    right: 1rem;
+    width: fit-content;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    &:active {
+        scale: 0.9;
+    }
 }
