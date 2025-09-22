@@ -8,8 +8,11 @@ function AdminDashboard() {
         const from = e.currentTarget;
         const formData = new FormData(from);
         const action = formData.get("adminActions") as string;
+
         if (action === "Add Products") {
             navigate("/admin/add-product");
+        } else if (action === "ManageUsers") {
+            navigate("/admin/manage-users");
         }
     };
     return (
@@ -36,6 +39,7 @@ function AdminDashboard() {
                 >
                     <select name="adminActions" className="form-select w-100 mb-3" aria-label="Admin actions">
                         <option defaultValue={"AddProducts"}> Add Products</option>
+                        <option value="ManageUsers"> Manage Users</option>
                     </select>
                     <button className="btn btn-primary">Go</button>
                 </form>
