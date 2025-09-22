@@ -13,6 +13,9 @@ function ToolCard({
     popularity,
     isWide = false,
     returnDate,
+    showDeleteBtn = false,
+    onDelete,
+    productId,
 }: {
     title: string;
     text: string;
@@ -24,6 +27,9 @@ function ToolCard({
     popularity?: number;
     isWide?: boolean;
     returnDate?: string;
+    showDeleteBtn?: boolean;
+    onDelete?: (productId: string) => void;
+    productId?: string;
 }) {
     const navigate = useNavigate();
     const handleClick = () => {
@@ -59,8 +65,14 @@ function ToolCard({
                     <div>
                         <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
                         <p className="text-white">
-                            You have {Math.ceil((new Date(returnDate).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24)} days left
+                            You have {Math.floor((new Date(returnDate).getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24)} days left
                         </p>
+                    </div>
+                )}
+                {showDeleteBtn && returnDate && (
+                    <div className="d-flex justify-content-center gap-3 flex-column align-items-center my-2">
+                        <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>
+                        <Button text="Delete" textColor="white" backgroundColor="red" isBordered={false} onClick={() => onDelete?.(productId!)} />
                     </div>
                 )}
             </div>

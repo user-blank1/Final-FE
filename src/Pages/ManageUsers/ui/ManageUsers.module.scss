@@ -1,0 +1,24 @@
+.backButton {
+    position: absolute;
+    top: 1rem;
+    left: 3rem;
+
+    svg {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+            fill: rgb(212, 212, 212);
+        }
+        &:active {
+            fill: rgb(172, 172, 172);
+        }
+    }
+}
+
+.ManageUsers {
+    height: 100vh;
+    background-color: black;
+}

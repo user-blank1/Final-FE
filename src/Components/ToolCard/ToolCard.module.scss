@@ -2,14 +2,14 @@
     width: 20%;
     height: 70vh !important;
     background-color: rgb(88, 70, 45);
-    @media (max-width: 992px) {
+    @media (max-width: 1200px) {
         width: 50%;
         margin: 0 auto;
         margin-bottom: 2rem;
         height: 68vh !important;
     }
-    @media (max-width: 576px) {
-        width: 90%;
+    @media (max-width: 600px) {
+        width: 95%;
         height: 68vh !important;
     }
 }
@@ -17,14 +17,14 @@
     width: 30%;
     height: 70vh !important;
     background-color: rgb(88, 70, 45);
-    @media (max-width: 992px) {
+    @media (max-width: 1200px) {
         width: 50%;
         margin: 0 auto;
         margin-bottom: 2rem;
         height: 68vh !important;
     }
-    @media (max-width: 576px) {
-        width: 80%;
+    @media (max-width: 600px) {
+        width: 95%;
         height: 68vh !important;
     }
 }

@@ -10,7 +10,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function Button({ text, isBordered, textColor, backgroundColor, ...props }: ButtonProps) {
     return (
-        <button className={`${styles.button} ${isBordered ? "" : styles["not-bordered"]}`} style={{ color: textColor, backgroundColor }} {...props}>
+        <button
+            className={`${styles.button} ${isBordered ? "" : styles["not-bordered"]} ${props.disabled ? styles.disabled : ""}`}
+            style={{ color: textColor, backgroundColor }}
+            {...props}
+        >
             {text}
         </button>
     );

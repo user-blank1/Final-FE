@@ -16,3 +16,12 @@
         scale: 0.95;
     }
 }
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    &:hover {
+        cursor: not-allowed;
+        filter: none;
+        scale: none;
+    }
+}
