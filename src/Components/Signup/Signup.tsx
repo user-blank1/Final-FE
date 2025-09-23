@@ -46,14 +46,14 @@ function Signup() {
         const username = formData.get("username") as string;
         const password = formData.get("password") as string;
         setResponseText("");
-        await signup(username, email, password);
-        if (!error) {
+        const result = await signup(username, email, password);
+        if (result?.success) {
             setResponseText("Success!");
             setTimeout(() => {
                 navigate("/");
             }, 1000);
         } else {
-            setResponseText("Error: " + error);
+            setResponseText(result?.error);
         }
     };
     return (

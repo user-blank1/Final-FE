@@ -17,6 +17,7 @@ function UserPage() {
         <div className={styles.userPage}>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
+            <h1 className="text-white w-100 text-center">My Rentals</h1>
             <div className="d-flex flex-column flex-lg-row align-items-center justify-content-center flex-wrap mx-auto mb-2 mb-lg-0 gap-4 px-1 px-lg-4 py-5">
                 {products && products.length > 0 ? (
                     products.map((product) => (
@@ -25,6 +26,8 @@ function UserPage() {
                             title={product.name}
                             text={product.description}
                             price={product.price}
+                            productId={product._id}
+                            rezervationShow={true}
                             available={product.available}
                             popularity={product.popularity}
                             returnDate={product.returnDate ?? undefined}

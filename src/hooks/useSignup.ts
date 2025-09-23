@@ -18,10 +18,10 @@ export const useSignup = () => {
             body: JSON.stringify({ email, username, password }),
         });
         const json = await res.json();
-
         if (!res.ok) {
             setIsLoading(false);
-            setError(json.error);
+
+            return { success: false, error: json.error || "Failed to sign up" };
         }
         if (res.ok) {
             localStorage.setItem("user", JSON.stringify(json));
