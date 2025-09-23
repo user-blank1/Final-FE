@@ -15,6 +15,8 @@ function AdminDashboard() {
             navigate("/admin/manage-users");
         } else if (action === "Edit Products") {
             navigate("/admin/edit-products");
+        } else if (action === "rezervations") {
+            navigate("/admin/rezervations");
         }
     };
     return (
@@ -43,6 +45,7 @@ function AdminDashboard() {
                         <option defaultValue={"AddProducts"}> Add Products</option>
                         <option value="ManageUsers"> Manage Users</option>
                         <option value="Edit Products">Edit products</option>
+                        <option value="rezervations">View Reservations</option>
                     </select>
                     <button className="btn btn-primary">Go</button>
                 </form>

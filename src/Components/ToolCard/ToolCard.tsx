@@ -1,10 +1,10 @@
 import styles from "./ToolCard.module.scss";
 import { useNavigate } from "react-router";
-import { useState, useEffect, useRef, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "@components/Button";
 import { useLocation } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+import { useEditReturnDate } from "../../utils/returnDate";
 function ToolCard({
     title,
     text,
@@ -23,6 +23,8 @@ function ToolCard({
     adminDelete = false,
     draft = false,
     isRented = false,
+    rezervationShow = false,
+    whoRented = "",
 }: {
     title: string;
     text: string;
@@ -41,9 +43,12 @@ function ToolCard({
     adminDelete?: boolean;
     draft?: boolean;
     isRented?: boolean;
+    rezervationShow?: boolean;
+    whoRented?: string;
 }) {
     const h5Ref = useRef<HTMLHeadingElement>(null);
     const descriptionRef = useRef<HTMLParagraphElement>(null);
+    const returnDateRef = useRef<HTMLParagraphElement>(null);
     const priceRef = useRef<HTMLParagraphElement>(null);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -197,27 +202,6 @@ function ToolCard({
     };
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (isEditingTitle && h5Ref.current && !h5Ref.current.contains(event.target as Node)) {
-                cancelEditTitle();
-            }
-            if (isEditingDescription && descriptionRef.current && !descriptionRef.current.contains(event.target as Node)) {
-                cancelEditDescription();
-            }
-            if (isEditingPrice && priceRef.current && !priceRef.current.contains(event.target as Node)) {
-                cancelEditPrice();
-            }
-        };
-
-        if (isEditingTitle || isEditingDescription || isEditingPrice) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isEditingTitle, isEditingDescription, isEditingPrice]);
-    useEffect(() => {
         if (isEditingTitle === true || isEditingDescription === true || isEditingPrice === true) {
             setIsEditing(true);
         } else {
@@ -253,6 +237,135 @@ function ToolCard({
                 <div className={`d-flex flex-column align-items-center pt-2 ${styles["text-container"]}`}>
                     <h5 className={`text-white ${styles.title}`}>{title}</h5>
                     <p className="text-info my-2">Currently Rented- cannot edit</p>
+                </div>
+            </div>
+        );
+    }
+    const [expired, setExpired] = useState(false);
+    useEffect(() => {
+        if (returnDate) {
+            const now = new Date();
+            const target = new Date(returnDate);
+            const diffMs = target.getTime() - now.getTime();
+            setExpired(diffMs <= 0);
+        }
+    }, [returnDate]);
+    const getTimeLeft = (dateString: string) => {
+        const now = new Date();
+        const target = new Date(dateString);
+        const diffMs = target.getTime() - now.getTime();
+
+        if (diffMs <= 0) {
+            return "Expired";
+        }
+
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+        return `${days} days, ${hours} hours, and ${minutes + 1} minute left`;
+    };
+
+    const { editedReturnDate, setEditedReturnDate, isEditingReturnDate, editReturnDate, cancelEditReturnDate, handleReturnDateKeyPress, saveReturnDate } =
+        useEditReturnDate(returnDate, productId, token ?? undefined, isLoading);
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isEditingTitle && h5Ref.current && !h5Ref.current.contains(event.target as Node)) {
+                cancelEditTitle();
+            }
+            if (isEditingDescription && descriptionRef.current && !descriptionRef.current.contains(event.target as Node)) {
+                cancelEditDescription();
+            }
+            if (isEditingPrice && priceRef.current && !priceRef.current.contains(event.target as Node)) {
+                cancelEditPrice();
+            }
+            if (isEditingReturnDate && returnDateRef.current && !returnDateRef.current.contains(event.target as Node)) {
+                cancelEditReturnDate();
+            }
+        };
+
+        if (isEditingTitle || isEditingDescription || isEditingPrice || isEditingReturnDate) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isEditingTitle, isEditingDescription, isEditingPrice, isEditingReturnDate]);
+
+    const cancelReservation = async () => {
+        if (!token) return;
+        if (isLoading) return;
+        const res = await fetch(`/api/products/edit/returndate/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ newReturnDate: new Date().toISOString().slice(0, 16) }),
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            alert(json.message || "Failed to update return date");
+            setEditedReturnDate(returnDate ? returnDate.slice(0, 16) : "");
+        }
+        if (res.ok) {
+            alert("Cancelled successfully");
+        }
+        window.location.reload();
+    };
+
+    if (rezervationShow) {
+        return (
+            <div className={`border border-5 rounded-4 overflow-hidden ${isWide ? styles["wide-card"] : styles.card}`}>
+                <div className={`w-100 ${styles["image-container"]}`}>
+                    <img src={imgSrc} className="h-100 w-100" alt={title} />
+                </div>
+                <div className={`d-flex flex-column align-items-center pt-2 position-relative ${styles["text-container"]}`}>
+                    <h5 className={`text-white ${styles.title}`}>{title}</h5>
+                    {whoRented && <p className="text-info my-2">Rezerved by {whoRented}</p>}
+                    <p className="text-white position-relative mt-2" ref={returnDateRef}>
+                        {" "}
+                        {returnDate ? getTimeLeft(returnDate) : ""}
+                        <span
+                            className="position-absolute  start-50 translate-middle badge rounded-pill "
+                            style={{ cursor: "pointer", bottom: "-5rem" }}
+                            onClick={editReturnDate}
+                        >
+                            {isEditingReturnDate ? (
+                                <>
+                                    <input
+                                        type="datetime-local"
+                                        value={editedReturnDate}
+                                        onChange={(e) => setEditedReturnDate(e.target.value)}
+                                        onKeyDown={handleReturnDateKeyPress}
+                                        className="form-control"
+                                        autoFocus
+                                    />
+                                    <button
+                                        onClick={saveReturnDate}
+                                        className="btn btn-primary btn-sm m-1 position-absolute  translate-middle"
+                                        style={{ cursor: "pointer", bottom: "-3.5rem" }}
+                                    >
+                                        Save
+                                    </button>
+                                </>
+                            ) : (
+                                <span>
+                                    {!expired && (
+                                        <span onClick={editReturnDate} className={`${styles.editDate}`}>
+                                            Edit Return date
+                                        </span>
+                                    )}
+                                </span>
+                            )}
+                        </span>
+                    </p>
+                    {!expired && (
+                        <button className={`btn btn-primary position-absolute `} onClick={cancelReservation}>
+                            Cancel Reservation
+                        </button>
+                    )}
                 </div>
             </div>
         );

@@ -98,6 +98,7 @@ function ProductPage() {
                             <label className="fs-5 fw-bold">Enter number of days to rent:</label>
                             <input
                                 min="0"
+                                defaultValue="0"
                                 required
                                 type="number"
                                 placeholder="Number of days"

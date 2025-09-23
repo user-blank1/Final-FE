@@ -15,6 +15,7 @@ import UserPage from "@pages/UserPage";
 import ManageUsers from "@pages/ManageUsers";
 import EditUser from "@pages/EditUser";
 import EditProducts from "@pages/EditProducts";
+import Rezervations from "@pages/Rezervations";
 const pages = createBrowserRouter([
     {
         path: "/",
@@ -67,6 +68,11 @@ const pages = createBrowserRouter([
                 path: "edit-products",
                 element: <MainLayout />,
                 children: [{ index: true, element: <EditProducts /> }],
+            },
+            {
+                path: "rezervations",
+                element: <MainLayout />,
+                children: [{ index: true, element: <Rezervations /> }],
             },
         ],
     },
