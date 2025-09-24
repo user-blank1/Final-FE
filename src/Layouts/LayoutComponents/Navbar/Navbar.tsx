@@ -15,7 +15,7 @@ function Navbar() {
     }, []);
     const { logout } = useLogout();
 
-    const { user, token } = useAuthContext();
+    const { user } = useAuthContext();
 
     console.log("Navbar user:", user);
     return (
@@ -44,34 +44,34 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link  ${styles["nav-item"]}`} to="/contact">
+                            <Link data-testid="navbar-contact-link" className={`nav-link  ${styles["nav-item"]}`} to="/contact">
                                 Contact
                             </Link>
                         </li>
                         {!user && (
                             <li className={`nav-item`}>
-                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/auth/login">
+                                <Link className={`nav-link  ${styles["nav-item"]}`} to="/auth/login">
                                     Login
                                 </Link>
                             </li>
                         )}
                         {!user && (
                             <li className={`nav-item`}>
-                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/auth/signup">
+                                <Link className={`nav-link  ${styles["nav-item"]}`} to="/auth/signup">
                                     Sign Up
                                 </Link>
                             </li>
                         )}
                         {user && (
                             <li className={`nav-item`}>
-                                <div data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} onClick={logout}>
+                                <div className={`nav-link  ${styles["nav-item"]}`} onClick={logout}>
                                     Log Out
                                 </div>
                             </li>
                         )}{" "}
                         {user && (
                             <li className={`nav-item`}>
-                                <Link data-testid="navbar-about-link" className={`nav-link  ${styles["nav-item"]}`} to="/products/user">
+                                <Link className={`nav-link  ${styles["nav-item"]}`} to="/products/user">
                                     My Profile
                                 </Link>
                             </li>

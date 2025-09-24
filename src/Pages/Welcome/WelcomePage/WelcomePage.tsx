@@ -1,9 +1,7 @@
 import styles from "./WelcomePage.module.scss";
 import img1 from "@assets/build.png";
-import { useState } from "react";
 import Button from "@components/Button";
 function WelcomePage() {
-    const [available, setAvailable] = useState(true);
     return (
         <div className={`${styles.container}  bg-black`}>
             <hr className={`p-0 m-0 ${styles.hr}`}></hr>
@@ -15,7 +13,7 @@ function WelcomePage() {
                                 <div className={` ${styles.imgContainer} `}>
                                     <img src={img1} alt="Build" className={`${styles.image}  rounded rounded-3 `} />
                                     <div className={`position-absolute d-flex align-items-center gap-2 gap-lg-3 ${styles.overlay} z-3`}>
-                                        <div className={available ? styles["circle"] : styles["circle-not-available"]}></div>
+                                        <div className={styles["circle"]}></div>
                                         <div className={`text-white ${styles.overlayContent}`}>
                                             <h3 className={`text-white fw-bold ${styles.overlayTitle}`}>Available Tools</h3>
                                             <p data-testid="overlay-text" className={`text-white fw-bold ${styles.overlayText}`}>

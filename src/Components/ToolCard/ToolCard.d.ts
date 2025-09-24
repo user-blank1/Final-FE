@@ -1,0 +1,22 @@
+declare function ToolCard({ title, text, imgSrc, price, showBtn, showPrice, available, popularity, isWide, returnDate, showDeleteBtn, onDelete, productId, adminActions, adminDelete, draft, isRented, rezervationShow, whoRented, }: {
+    title: string;
+    text: string;
+    imgSrc: string;
+    price: number;
+    showBtn?: boolean;
+    showPrice?: boolean;
+    available?: boolean;
+    popularity?: number;
+    isWide?: boolean;
+    returnDate?: string;
+    showDeleteBtn?: boolean;
+    adminActions?: boolean;
+    onDelete?: (productId?: string) => void;
+    productId?: string;
+    adminDelete?: boolean;
+    draft?: boolean;
+    isRented?: boolean;
+    rezervationShow?: boolean;
+    whoRented?: string;
+}): import("react/jsx-runtime").JSX.Element;
+export default ToolCard;

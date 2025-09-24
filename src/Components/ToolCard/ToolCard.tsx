@@ -68,7 +68,7 @@ function ToolCard({
     const location = useLocation();
 
     /////////////////////////////////////////////////////////////////
-    const { token, isLoading } = useAuthContext()!;
+    const { token, isLoading, user } = useAuthContext()!;
 
     const [editedTitle, setEditedTitle] = useState(title);
     const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -424,7 +424,6 @@ function ToolCard({
                         ) : null}
                     </h5>
                     <hr className="bg-white border w-100 m-0 p-0"></hr>
-
                     <div ref={descriptionRef} className={`card-text text-white w-75 mt-3 text-center text-break ${styles.text} position-relative`}>
                         {truncateText()}
                         {(adminActions || adminDelete) && (
@@ -473,7 +472,6 @@ function ToolCard({
                             {popularity !== undefined && <p className="card-text m-0 p-0 text-white">Popularity: {popularity}</p>}
                         </div>
                     )}
-
                     {showPrice && (
                         <div ref={priceRef} className="card-text text-white position-relative">
                             Price: {price}$/Day
@@ -512,8 +510,8 @@ function ToolCard({
                             ) : null}
                         </div>
                     )}
-
-                    {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-2">Currently Unavailable</p>}
+                    {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-2 mb-1">Currently Unavailable</p>}
+                    {whoRented === user?._id && <p className="text-white m-0 p-0">You are the current renter</p>}
                     {returnDate && location.pathname.includes("/products/user") && (
                         <div>
                             <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>

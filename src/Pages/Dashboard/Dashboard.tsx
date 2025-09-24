@@ -15,6 +15,7 @@ interface Product {
     imageUrl: string;
     price: number;
     popularity: number;
+    rentedBy: string;
 }
 function Dashboard() {
     const { token, isLoading } = useAuthContext();
@@ -52,6 +53,7 @@ function Dashboard() {
         };
         getPopularProducts();
     }, [token, isLoading]);
+    console.log("isMobile:", isMobile);
     return (
         <div className={`${styles.dashboard} d-flex flex-column align-items-center  `}>
             <h1 className="text-white mt-4 mb-0 p-0 ">Welcome to Best Rent!</h1>
@@ -97,6 +99,7 @@ function Dashboard() {
                                     available={card.available}
                                     popularity={card.popularity}
                                     imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
+                                    whoRented={card.rentedBy}
                                 />
                             );
                         })}
