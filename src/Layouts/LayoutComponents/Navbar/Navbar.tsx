@@ -15,7 +15,7 @@ function Navbar() {
     }, []);
     const { logout } = useLogout();
 
-    const { user, token } = useAuthContext();
+    const { user } = useAuthContext();
 
     console.log("Navbar user:", user);
     return (

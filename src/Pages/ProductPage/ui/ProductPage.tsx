@@ -64,8 +64,10 @@ function ProductPage() {
             setError(json.error);
         }
         if (res.ok) {
-            // navigate("/user/me")
             setError("Success!");
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
         }
     };
     return (

@@ -3,7 +3,7 @@ import img1 from "@assets/build.png";
 import { useState } from "react";
 import Button from "@components/Button";
 function WelcomePage() {
-    const [available, setAvailable] = useState(true);
+    const [available] = useState(true);
     return (
         <div className={`${styles.container}  bg-black`}>
             <hr className={`p-0 m-0 ${styles.hr}`}></hr>

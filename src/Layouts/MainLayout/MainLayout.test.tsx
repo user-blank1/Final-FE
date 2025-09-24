@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { fireEvent } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router";
 import MainLayout from "./MainLayout";
 import { Routes, Route } from "react-router-dom";
