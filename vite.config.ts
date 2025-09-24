@@ -15,7 +15,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "final-be-production-ddac.up.railway.app",
+                target: "http://localhost:3000",
                 changeOrigin: true,
                 secure: false,
             },
