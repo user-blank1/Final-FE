@@ -11,7 +11,8 @@
             "@reusables/*": ["reusables/*"],
             "@assets/*": ["assets/*"],
             "@pages/*": ["Pages/*"]
-        }
+        },
+        "outDir": "./dist"
     },
     "include": ["src"]
 }

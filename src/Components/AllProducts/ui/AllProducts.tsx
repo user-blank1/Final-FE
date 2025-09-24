@@ -42,6 +42,7 @@ function AllProducts() {
                         price={product.price}
                         available={product.available}
                         isWide={true}
+                        whoRented={product.rentedBy}
                     />
                 ))}
             </div>

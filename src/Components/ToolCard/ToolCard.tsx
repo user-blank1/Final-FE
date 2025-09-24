@@ -68,7 +68,7 @@ function ToolCard({
     const location = useLocation();
 
     /////////////////////////////////////////////////////////////////
-    const { token, isLoading } = useAuthContext()!;
+    const { token, isLoading, user } = useAuthContext()!;
 
     const [editedTitle, setEditedTitle] = useState(title);
     const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -513,7 +513,8 @@ function ToolCard({
                         </div>
                     )}
 
-                    {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-2">Currently Unavailable</p>}
+                    {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-1">Currently Unavailable</p>}
+                    {whoRented === user?._id && <p className="text-info my-1">You have rented this tool</p>}
                     {returnDate && location.pathname.includes("/products/user") && (
                         <div>
                             <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>

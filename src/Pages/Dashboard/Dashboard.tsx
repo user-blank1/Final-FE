@@ -15,12 +15,14 @@ interface Product {
     imageUrl: string;
     price: number;
     popularity: number;
+    rentedBy: string;
 }
 function Dashboard() {
     const { token, isLoading } = useAuthContext();
     const [error, setError] = useState("");
     const [popular, setPopular] = useState<Product[] | null>(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 1200);
+    console.log(isMobile);
     useEffect(() => {
         function handleResize() {
             setIsMobile(window.innerWidth < 1200);
@@ -97,6 +99,7 @@ function Dashboard() {
                                     available={card.available}
                                     popularity={card.popularity}
                                     imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
+                                    whoRented={card.rentedBy}
                                 />
                             );
                         })}

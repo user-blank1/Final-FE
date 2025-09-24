@@ -1,6 +1,6 @@
 import styles from "./AddProduct.module.scss";
 import Button from "@components/Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 function AddProduct() {
