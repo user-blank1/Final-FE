@@ -73,7 +73,7 @@ function Footer() {
                                     href="#"
                                     className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
                                 >
-                                    Angular
+                                    Machinery
                                 </a>
                             </p>
                             <p>
@@ -81,7 +81,7 @@ function Footer() {
                                     href="#!"
                                     className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
                                 >
-                                    React
+                                    Construction
                                 </a>
                             </p>
                             <p>
@@ -89,7 +89,7 @@ function Footer() {
                                     href="#!"
                                     className={` d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
                                 >
-                                    Vue
+                                    Industrial
                                 </a>
                             </p>
                             <p>
@@ -97,7 +97,7 @@ function Footer() {
                                     href="#!"
                                     className={`d-flex align-items-center justify-content-center text-white ${styles["text-decoration-underline-hover"]}`}
                                 >
-                                    Laravel
+                                    Other
                                 </a>
                             </p>
                         </div>

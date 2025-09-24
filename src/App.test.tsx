@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MemoryRouter, useLocation } from "react-router";
+import { MemoryRouter } from "react-router";
 
 import { Routes, Route } from "react-router-dom";
 
