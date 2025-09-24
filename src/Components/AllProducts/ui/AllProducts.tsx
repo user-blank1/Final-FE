@@ -10,7 +10,7 @@ function AllProducts() {
         const getAll = async () => {
             setError(null);
             if (isLoading) return;
-            const res = await fetch("/api/products/all", {
+            const res = await fetch("https://final-be-production-ddac.up.railway.app/api/products/all", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
