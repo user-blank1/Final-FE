@@ -97,7 +97,7 @@ function ToolCard({
         if (editedTitle.trim() === "") return;
         if (!token) return;
         if (isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/title/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/title/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -137,7 +137,7 @@ function ToolCard({
         if (editedDescription.trim() === "") return;
         if (!token) return;
         if (isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/description/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/description/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -180,7 +180,7 @@ function ToolCard({
         }
         if (!token) return;
         if (isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/price/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/price/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -212,7 +212,7 @@ function ToolCard({
     const draftFn = async () => {
         if (!token) return;
         if (isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/draft/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/draft/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -296,7 +296,7 @@ function ToolCard({
     const cancelReservation = async () => {
         if (!token) return;
         if (isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/returndate/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/returndate/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -10,7 +10,7 @@ function EditProducts() {
         if (isLoading) return;
         if (!token) return;
         const getAll = async () => {
-            const res = await fetch("final-be-production-ddac.up.railway.app/api/products/all/admin", {
+            const res = await fetch("https://final-be-production-ddac.up.railway.app/api/products/all/admin", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function EditProducts() {
     }, [isLoading, token]);
     const deleteRentedProduct = async (id: string) => {
         console.log(id);
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/admin/${id}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/admin/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

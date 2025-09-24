@@ -26,7 +26,7 @@ function ProductPage() {
         const fetchProduct = async () => {
             if (isLoading) return;
 
-            const response = await fetch(`final-be-production-ddac.up.railway.app/api/products/single/${title}`, {
+            const response = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/single/${title}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function ProductPage() {
     }, [title, token, isLoading]);
 
     const rentFunction = async () => {
-        const res = await fetch("final-be-production-ddac.up.railway.app/api/products/rent", {
+        const res = await fetch("https://final-be-production-ddac.up.railway.app/api/products/rent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

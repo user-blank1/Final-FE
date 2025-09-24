@@ -16,7 +16,7 @@ export const useFetchProducts = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const res = await fetch(`final-be-production-ddac.up.railway.app/api/auth/products/${user?._id}`, {
+            const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/auth/products/${user?._id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

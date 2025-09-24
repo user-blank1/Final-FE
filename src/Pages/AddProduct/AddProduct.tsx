@@ -26,7 +26,7 @@ function AddProduct() {
         formData.append("available", available.toString());
         formData.append("popularity", popularity);
 
-        const res = await fetch("final-be-production-ddac.up.railway.app/api/products", {
+        const res = await fetch("https://final-be-production-ddac.up.railway.app/api/products", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,

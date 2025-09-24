@@ -21,7 +21,7 @@ export function useEditReturnDate(returnDate: string | undefined, productId: str
     };
     const saveReturnDate = async () => {
         if (!editedReturnDate || !token || !productId || isLoading) return;
-        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/edit/returndate/${productId}`, {
+        const res = await fetch(`https://final-be-production-ddac.up.railway.app/api/products/edit/returndate/${productId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
