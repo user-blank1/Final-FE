@@ -5,7 +5,7 @@ export const useLogout = () => {
 
     const logout = async () => {
         try {
-            await fetch("/api/auth/logout", {
+            await fetch("final-be-production-ddac.up.railway.app/api/auth/logout", {
                 method: "GET",
                 credentials: "include",
             });

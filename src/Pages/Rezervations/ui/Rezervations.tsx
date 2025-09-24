@@ -27,7 +27,7 @@ function Rezervations() {
     useEffect(() => {
         const getData = async () => {
             if (!token || isLoading) return;
-            const res = await fetch("/api/products/rezervations", {
+            const res = await fetch("final-be-production-ddac.up.railway.app/api/products/rezervations", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

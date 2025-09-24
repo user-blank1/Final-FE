@@ -13,7 +13,7 @@ function EditUser() {
     useEffect(() => {
         const fetchData = async () => {
             setError(null);
-            const response = await fetch(`/api/auth/user/${id}`, {
+            const response = await fetch(`final-be-production-ddac.up.railway.app/api/auth/user/${id}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ function EditUser() {
     }, [userData]);
 
     const deleteRentedProduct = async (id?: string) => {
-        const res = await fetch(`/api/products/${id}`, {
+        const res = await fetch(`final-be-production-ddac.up.railway.app/api/products/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

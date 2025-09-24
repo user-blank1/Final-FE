@@ -22,7 +22,7 @@ function ManageUsers() {
         }
         const fetchUsers = async () => {
             setError(null);
-            const res = await fetch("/api/auth/users", {
+            const res = await fetch("final-be-production-ddac.up.railway.app/api/auth/users", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

@@ -13,7 +13,7 @@ export const useLogin = () => {
         setIsLoading(true);
         setError(null);
 
-        const res = await fetch("/api/auth/login", {
+        const res = await fetch("final-be-production-ddac.up.railway.app/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

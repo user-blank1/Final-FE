@@ -10,7 +10,7 @@ export const useSignup = () => {
         setIsLoading(true);
         setError(null);
 
-        const res = await fetch("/api/auth/signup", {
+        const res = await fetch("final-be-production-ddac.up.railway.app/api/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

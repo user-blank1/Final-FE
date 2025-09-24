@@ -36,7 +36,7 @@ function Dashboard() {
         if (isLoading || !token) return;
         setError("");
         const getPopularProducts = async () => {
-            const res = await fetch("/api/products/popular", {
+            const res = await fetch("final-be-production-ddac.up.railway.app/api/products/popular", {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
