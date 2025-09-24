@@ -424,7 +424,6 @@ function ToolCard({
                         ) : null}
                     </h5>
                     <hr className="bg-white border w-100 m-0 p-0"></hr>
-
                     <div ref={descriptionRef} className={`card-text text-white w-75 mt-3 text-center text-break ${styles.text} position-relative`}>
                         {truncateText()}
                         {(adminActions || adminDelete) && (
@@ -473,7 +472,6 @@ function ToolCard({
                             {popularity !== undefined && <p className="card-text m-0 p-0 text-white">Popularity: {popularity}</p>}
                         </div>
                     )}
-
                     {showPrice && (
                         <div ref={priceRef} className="card-text text-white position-relative">
                             Price: {price}$/Day
@@ -513,8 +511,10 @@ function ToolCard({
                         </div>
                     )}
 
+
                     {!available && !location.pathname.includes("/products/user") && <p className="text-danger my-1">Currently Unavailable</p>}
                     {whoRented === user?._id && <p className="text-info my-1">You have rented this tool</p>}
+
                     {returnDate && location.pathname.includes("/products/user") && (
                         <div>
                             <p className="text-white my-2">Return Date: {new Date(returnDate).toLocaleDateString()}</p>

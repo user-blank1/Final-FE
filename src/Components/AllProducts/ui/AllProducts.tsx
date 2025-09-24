@@ -2,10 +2,11 @@ import styles from "./AllProducts.module.scss";
 import ToolCard from "@components/ToolCard";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
+
 function AllProducts() {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState<string | null>(null);
-    const { token, isLoading } = useAuthContext();
+    const { token, isLoading, user } = useAuthContext();
     useEffect(() => {
         const getAll = async () => {
             setError(null);
@@ -18,6 +19,7 @@ function AllProducts() {
                 },
             });
             const json = await res.json();
+            console.log(json);
             if (!res.ok) {
                 setError(json.error);
             }
@@ -26,7 +28,7 @@ function AllProducts() {
             }
         };
         getAll();
-    }, [token, isLoading]);
+    }, [token, isLoading, user]);
     return (
         <div className="d-flex  container align-items-center gap-4 py-5 w-100 flex-wrap">
             <div className="text-white fs-1 text-center w-100">All Products</div>

@@ -54,6 +54,7 @@ function Dashboard() {
         };
         getPopularProducts();
     }, [token, isLoading]);
+    console.log("isMobile:", isMobile);
     return (
         <div className={`${styles.dashboard} d-flex flex-column align-items-center  `}>
             <h1 className="text-white mt-4 mb-0 p-0 ">Welcome to Best Rent!</h1>

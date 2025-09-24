@@ -1,0 +1,9 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import styles from "./AuthLayout.module.scss";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+function AuthLayout() {
+    const navigate = useNavigate();
+    return (_jsxs("div", { className: styles.AuthLayout, children: [_jsx("div", { className: `${styles.backButton}`, onClick: () => navigate(-1), children: _jsx("a", { href: "#", className: `text-white`, children: _jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "48", height: "48", fill: "white", className: "bi bi-arrow-left", viewBox: "0 0 16 16", children: _jsx("path", { fillRule: "evenodd", d: "M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" }) }) }) }), _jsx(Outlet, {})] }));
+}
+export default AuthLayout;

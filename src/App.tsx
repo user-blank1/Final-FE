@@ -22,7 +22,7 @@ const pages = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { index: true, element: <HomeIndex /> },
-            { path: "/about", element: <div>Learn About Us</div> },
+            { path: "/about", element: <div style={{ color: "white", height: "100vh" }}>Learn About Us</div> },
             { path: "/contact", element: <Contact /> },
             { path: "/products/:title", element: <ProductPage /> },
         ],
