@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 function Signup() {
-    const { signup, loading } = useSignup();
+    const { signup, loading, error } = useSignup();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -47,13 +47,13 @@ function Signup() {
         const password = formData.get("password") as string;
         setResponseText("");
         const result = await signup(username, email, password);
-        if (result?.success) {
+        if (result?.success === false) {
+            setResponseText(result.error);
+        } else {
             setResponseText("Success!");
             setTimeout(() => {
                 navigate("/");
             }, 1000);
-        } else {
-            setResponseText(result?.error);
         }
     };
     return (
@@ -94,9 +94,9 @@ function Signup() {
                 >
                     Sign Up
                 </button>
-                {loading && <div>Loading...</div>}
+                {loading && <div className="text-white">Loading...</div>}
             </form>
-            <div className={`${responseText.includes("Error") ? "text-warning" : "text-white"}`}>{responseText}</div>
+            <div className={"text-white"}>{responseText}</div>
         </div>
     );
 }

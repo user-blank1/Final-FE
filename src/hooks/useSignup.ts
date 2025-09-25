@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
-    const [error, setError] = useState<null | string>(null);
+    const [error, setError] = useState<boolean>(false);
     const [loading, setIsLoading] = useState<boolean>(false);
     const { dispatch } = useAuthContext()!;
 
     const signup = async (username: string, email: string, password: string) => {
         setIsLoading(true);
-        setError(null);
+        setError(false);
 
         const res = await fetch("https://final-be-production-ddac.up.railway.app/api/auth/signup", {
             method: "POST",
@@ -20,7 +20,7 @@ export const useSignup = () => {
         const json = await res.json();
         if (!res.ok) {
             setIsLoading(false);
-
+            setError(true);
             return { success: false, error: json.error || "Failed to sign up" };
         }
         if (res.ok) {
