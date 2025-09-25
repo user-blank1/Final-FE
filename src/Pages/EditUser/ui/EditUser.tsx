@@ -70,7 +70,7 @@ function EditUser() {
                         <ToolCard
                             key={rental.id}
                             title={rental.name}
-                            imgSrc={`http://localhost:3000/uploads/${rental.imageUrl.replace("uploads/", "")}`}
+                            imgSrc={`https://final-be-production-ddac.up.railway.app/uploads/${rental.imageUrl.replace("uploads/", "")}`}
                             price={rental.price}
                             isWide={false}
                             text={rental.description}

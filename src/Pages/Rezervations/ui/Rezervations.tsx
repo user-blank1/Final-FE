@@ -58,7 +58,7 @@ function Rezervations() {
                             key={card._id}
                             title={card.name}
                             text={card.description}
-                            imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
+                            imgSrc={`https://final-be-production-ddac.up.railway.app/uploads/${card.imageUrl.replace("uploads/", "")}`}
                             price={card.price}
                             showBtn={false}
                             showPrice={true}
