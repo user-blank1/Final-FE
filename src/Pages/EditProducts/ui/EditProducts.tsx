@@ -70,7 +70,7 @@ function EditProducts() {
                                 adminActions={true}
                                 draft={product.draft}
                                 isRented={product.rentedBy}
-                                imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads/", "")}`}
+                                imgSrc={`https://final-be-production-ddac.up.railway.app/uploads/${product.imageUrl.replace("uploads/", "")}`}
                             />
                         );
                     })}

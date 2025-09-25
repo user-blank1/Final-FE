@@ -98,7 +98,7 @@ function Dashboard() {
                                     price={card.price}
                                     available={card.available}
                                     popularity={card.popularity}
-                                    imgSrc={`http://localhost:3000/uploads/${card.imageUrl.replace("uploads/", "")}`}
+                                    imgSrc={`https://final-be-production-ddac.up.railway.app/uploads/${card.imageUrl.replace("uploads/", "")}`}
                                     whoRented={card.rentedBy}
                                 />
                             );
