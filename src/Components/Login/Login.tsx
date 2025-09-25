@@ -61,17 +61,32 @@ function Login() {
                     <label htmlFor="username" className="form-label text-white">
                         Username
                     </label>
-                    <input type="text" className="form-control" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+                    <input
+                        data-testid="username-input"
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        name="username"
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                     <div className={`${usernameError === "Format is correct" ? "text-white" : "text-warning"} ${styles.errorUsername}`}>{usernameError}</div>
                 </div>
                 <div className="mt-3">
                     <label htmlFor="password" className="form-label text-white">
                         Password
                     </label>
-                    <input type="password" className="form-control" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        data-testid="password-input"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                     <div className={`${passwordError === "Format is correct" ? "text-white" : "text-warning"} ${styles.errorPassword}`}>{passwordError}</div>
                 </div>
                 <button
+                    data-testid="login-submit-button"
                     type="submit"
                     className="btn btn-success mt-4"
                     disabled={usernameError !== "Format is correct" || passwordError !== "Format is correct" || loading}
