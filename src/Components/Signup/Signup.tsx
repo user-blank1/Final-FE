@@ -47,13 +47,13 @@ function Signup() {
         const password = formData.get("password") as string;
         setResponseText("");
         const result = await signup(username, email, password);
-        if (result?.success) {
+        if (result?.success === false) {
+            setResponseText(result.error);
+        } else {
             setResponseText("Success!");
             setTimeout(() => {
                 navigate("/");
             }, 1000);
-        } else {
-            setResponseText(result?.error);
         }
     };
     return (
