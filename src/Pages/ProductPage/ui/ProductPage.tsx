@@ -79,7 +79,7 @@ function ProductPage() {
                         title={product.name}
                         text={product.description}
                         price={product.price}
-                        imgSrc={`http://localhost:3000/uploads/${product.imageUrl.replace("uploads/", "")}`}
+                        imgSrc={`https://final-be-production-ddac.up.railway.app/uploads/${product.imageUrl.replace("uploads/", "")}`}
                         showBtn={false}
                         showPrice={true}
                     />
