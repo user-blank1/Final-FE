@@ -362,7 +362,7 @@ function ToolCard({
                         </span>
                     </p>
                     {!expired && (
-                        <button className={`btn btn-primary position-absolute`} style={{ bottom: "2rem" }} onClick={cancelReservation}>
+                        <button className={`btn btn-primary position-absolute`} style={{ bottom: "0.4rem" }} onClick={cancelReservation}>
                             Cancel Reservation
                         </button>
                     )}
