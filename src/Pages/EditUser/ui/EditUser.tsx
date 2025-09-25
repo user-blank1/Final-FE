@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 function EditUser() {
-    const { token, isLoading } = useAuthContext();
+    const { token, isLoading, dispatch } = useAuthContext();
     const { id } = useParams<{ id: string }>();
     const [userData, setUserData] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
@@ -54,6 +54,12 @@ function EditUser() {
         }
         if (res.ok) {
             setFetchError(null);
+            const updatedProducts = userData.filter((rental: any) => rental._id !== id);
+            dispatch({
+                type: "UPDATE_USER_PRODUCTS",
+                payload: { products: updatedProducts },
+            });
+            setUserData(updatedProducts);
             setSuccessMessage("Product deleted successfully");
             setTimeout(() => {
                 window.location.reload();

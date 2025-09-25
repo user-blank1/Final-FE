@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 function Signup() {
-    const { signup, loading, error } = useSignup();
+    const { signup, loading } = useSignup();
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
