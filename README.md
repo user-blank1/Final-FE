@@ -1,3 +1,41 @@
+# Deployed branch.
+
+## This branch is available to see at: final-fe-production.up.railway.app
+
+## To run locally, pull the branch: https://github.com/user-blank1/Final-FE/tree/localhost and run it together with BE branch: https://github.com/user-blank1/Final-BE
+
+## The back-end branch for this project is available at: https://github.com/user-blank1/Final-BE and is deployed on railway: final-be-production-ddac.up.railway.app
+
+# Tests:
+
+## To run tests, go to root dir and type npx jest. To run linter, type npm run lint.
+
+# About the project
+
+### this is a website to rent tools. Any user when logged in can rent a tool, view their active rentals, delete their rentals and change return dates.
+
+### *ADMIN CREDENTIALS*: username: admin, password: Password@123
+
+### Admin can end or change rental period of a user, add or remove products, and edit products.
+
+## *IMPORTANT*: back end refreshes expired rentals every 30 seconds. So after user or admin ends a rent, after at least 30s try to refresh the main page to see that product is not available anymore to rent.
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
