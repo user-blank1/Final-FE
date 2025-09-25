@@ -20,6 +20,8 @@
 
 ## *IMPORTANT*: back end refreshes expired rentals every 30 seconds. So after user or admin ends a rent, after at least 30s try to refresh the main page to see that product is not available anymore to rent.
 
+## In case of errors, they might occur because of user and product inconsistencies. In that case I need to restart railway app after deleting the database, so it can reseed all the data and all the data will be consistent with current session/usage. Message me if you think errors occur due to old database version usage.
+
 
 
 
